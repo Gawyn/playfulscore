@@ -4,4 +4,8 @@ block content
   h1= title
   p Welcome to #{title}
 
-  = matches
+  each match in matches
+    .match
+      .time= match.time
+      .name= match.name
+      .result= match.time
