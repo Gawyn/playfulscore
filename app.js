@@ -8,8 +8,16 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var mongoskin = require ('mongoskin');
+
+var db = mongoskin.db('mongodb://localhost:27017/playfulscore?auto_reconnect', {safe:true});
 
 var app = express();
+app.use(function(req, res, next) {
+  req.db = {};
+  req.db.matches = db.collection('matches');
+  next();
+})
 
 // all environments
 app.set('port', process.env.PORT || 3000);
