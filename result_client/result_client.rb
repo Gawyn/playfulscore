@@ -14,8 +14,8 @@ start_time = Time.now - 60
 
 loop do
   if start_time + 60 < Time.now
+    start_time = Time.now
     iw_client.get_events.each do |event_id|
-      start_time = Time.now
       result = iw_client.get_score(event_id)
       if result
         event = coll.find_one(interwetten_id: event_id)
